@@ -1,7 +1,7 @@
 Python-xsense
 =============
 
-Python-xsense is an async client library for X-Sense cloud accounts, AWS IoT
+Python-xsense is a client library for X-Sense cloud accounts, AWS IoT
 shadows, MQTT updates, ADDX/VicoHome camera APIs, recording metadata and local
 SD playback controls, WebRTC signaling, and supported device actions/settings.
 
@@ -31,6 +31,20 @@ Client usage
    >>>         dump_environment(api)
    >>>
    >>> asyncio.run(run(username, password))
+
+The established synchronous ``XSense`` client remains available for existing
+consumers alongside ``AsyncXSense``.
+
+Synchronous compatibility
+-------------------------
+
+::
+
+   >>> from xsense import XSense
+   >>> with XSense() as api:
+   ...     api.init()
+   ...     api.login(username, password)
+   ...     api.load_all()
 
 Reusable helpers
 ----------------
@@ -67,4 +81,4 @@ Maintenance
 -----------
 
 This library is maintained as a shared upstream client for the X-Sense Home
-Security integration and other async Python consumers.
+Security integration and other Python consumers.

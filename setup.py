@@ -28,6 +28,7 @@ setup(
         'pycognito',
         'aiohttp',
         'paho-mqtt>=2.1.0,<3',
+        'requests',
     ],
     extras_require={
         'test': ['pytest', 'pytest-asyncio'],

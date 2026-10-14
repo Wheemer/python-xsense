@@ -571,6 +571,7 @@ def test_documented_history_helpers_use_app_request_shapes():
             },
         ),
         (
+
             "104020",
             {
                 "houseId": "house-id",
@@ -582,6 +583,59 @@ def test_documented_history_helpers_use_app_request_shapes():
         ("505001", {"serverId": "server-id", "nextToken": "next"}),
     ]
 
+
+
+def test_legacy_async_history_helpers_preserve_request_shapes():
+    client = RecordingHistoryClient()
+
+    asyncio.run(client.get_history("house-id", "20260628", "UTC", "next"))
+    asyncio.run(client.get_history_month("house-id", "202606", "UTC"))
+    asyncio.run(
+        client.get_station_history(
+            "house-id", "station-id", "20260628", "UTC", "device-id", "next"
+        )
+    )
+    asyncio.run(
+        client.get_station_history(
+            houseId="house-id",
+            stationId="station-id",
+            dayTime="20260628",
+            timeZone="UTC",
+            deviceId="device-id",
+            nextToken="next",
+        )
+    )
+    asyncio.run(
+        client.get_station_history_month(
+            "house-id", "station-id", "device-id", "202606", "UTC"
+        )
+    )
+    asyncio.run(client.get_security_history("server-id", "next"))
+    asyncio.run(client.get_sth_history("house-id", "station-id", "0", "next"))
+    asyncio.run(client.get_co_ppm_history("station-id", "UTC"))
+    asyncio.run(client.get_co_ppm_history("station-id", "UTC", "device-id"))
+    asyncio.run(
+        client.get_co_ppm_history_details("house-id", "station-id", "20260628", "UTC")
+    )
+    asyncio.run(
+        client.get_co_ppm_history_details(
+            "house-id", "station-id", "20260628", "UTC", "device-id"
+        )
+    )
+
+    assert client.api_calls == [
+        ("104001", {"houseId": "house-id", "dayTime": "20260628", "timeZone": "UTC", "nextToken": "next"}),
+        ("104006", {"houseId": "house-id", "hisMonth": "202606", "timeZone": "UTC"}),
+        ("104007", {"houseId": "house-id", "stationId": "station-id", "dayTime": "20260628", "timeZone": "UTC", "deviceId": "device-id", "nextToken": "next"}),
+        ("104007", {"houseId": "house-id", "stationId": "station-id", "dayTime": "20260628", "timeZone": "UTC", "deviceId": "device-id", "nextToken": "next"}),
+        ("104008", {"houseId": "house-id", "stationId": "station-id", "deviceId": "device-id", "hisMonth": "202606", "timeZone": "UTC"}),
+        ("505001", {"serverId": "server-id", "nextToken": "next"}),
+        ("104020", {"houseId": "house-id", "stationId": "station-id", "lastTime": "0", "nextToken": "next"}),
+        ("104014", {"stationId": "station-id", "timeZone": "UTC"}),
+        ("104009", {"stationId": "station-id", "timeZone": "UTC", "deviceId": "device-id"}),
+        ("104015", {"houseId": "house-id", "stationId": "station-id", "dayTime": "20260628", "timeZone": "UTC"}),
+        ("104010", {"houseId": "house-id", "stationId": "station-id", "dayTime": "20260628", "timeZone": "UTC", "deviceId": "device-id"}),
+    ]
 
 def test_ipc_language_uses_simple_app_language_code():
     from xsense.async_xsense import _ipc_language
