@@ -51,11 +51,11 @@ Pure parsing helpers live in separate modules:
 * ``xsense.webrtc_signal`` parses ADDX WebRTC tickets and builds/parses the
   signal-server SDP and ICE payloads.
 
-Migration surface
+Client surface
 -----------------
 
-The library is intended to carry the reusable surface currently embedded under
-the Home Assistant integration's ``custom_components/xsense/api`` package:
+The library provides the reusable X-Sense client and protocol surface used by
+the Home Assistant integration:
 
 * authentication, token refresh, app request signing, and AWS credential loading
 * X-Sense ``/app`` calls and AWS IoT shadow reads/writes
