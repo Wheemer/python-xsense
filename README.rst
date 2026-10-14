@@ -1,13 +1,12 @@
 Python-xsense
 =============
 
-Python-xsense is an async client library for X-Sense cloud accounts,
-AWS IoT shadows, MQTT updates, ADDX/VicoHome camera APIs, camera history,
-live-view helpers, and supported device actions/settings.
+Python-xsense is an async client library for X-Sense cloud accounts, AWS IoT
+shadows, MQTT updates, ADDX/VicoHome camera APIs, recording metadata and local
+SD playback controls, WebRTC signaling, and supported device actions/settings.
 
-Supported Python versions are 3.10 through 3.14. Home Assistant currently runs
-on a newer Python, but the library keeps the lower floor for scripts and other
-async Python consumers when the test matrix proves compatibility.
+Supported Python versions are 3.10 through 3.14, including the supported Home
+Assistant runtime range.
 
 This package contains reusable Python client logic only. Home Assistant
 entity descriptions, icons, translations, blueprints, platform setup, and
@@ -39,8 +38,8 @@ Reusable helpers
 
 The main async client lives in ``xsense.AsyncXSense``. It exposes the current
 X-Sense app API request shape, Cognito session refresh, AWS IoT shadow
-reads/writes, ADDX/VicoHome camera discovery, camera thumbnail and live-view
-helpers, and supported device actions/settings.
+reads/writes, ADDX/VicoHome camera discovery, camera thumbnails, WebRTC tickets,
+and signal-relay helpers, plus supported device actions/settings.
 
 Pure parsing helpers live in separate modules:
 
@@ -62,11 +61,11 @@ the Home Assistant integration:
 * house, station, device, camera, and entity mapping/normalization
 * MQTT connection helpers, shadow/presence topics, and payload parsing
 * ADDX/VicoHome camera discovery, metadata/config merging, thumbnails, history,
-  AI history, WebRTC tickets, and live-view helpers
+  AI history, WebRTC tickets, and signal-relay helpers
 * reusable device actions and settings writes for supported device data
 
-Development
+Maintenance
 -----------
 
-This library is in an early development stage. It is maintained as a
-shared upstream client for integrations and other async Python consumers.
+This library is maintained as a shared upstream client for the X-Sense Home
+Security integration and other async Python consumers.
