@@ -57,6 +57,9 @@ def test_async_client_exposes_current_camera_api_surface():
     assert hasattr(AsyncXSense, "update_camera_recording_resolution")
     assert hasattr(AsyncXSense, "update_camera_default_codec")
 
+    assert hasattr(AsyncXSense, "retrieve_camera_local_videos")
+    assert hasattr(AsyncXSense, "play_camera_local_video")
+    assert hasattr(AsyncXSense, "stop_camera_local_video")
 
 def test_event_parser_has_explicit_public_exports():
     event_parser = importlib.import_module("xsense.event_parser")
@@ -76,3 +79,6 @@ def test_webrtc_signal_exports_current_relay_surface():
     assert hasattr(webrtc_signal, "make_sdp_offer_payload")
     assert hasattr(webrtc_signal, "make_ice_candidate_payload")
     assert hasattr(webrtc_signal, "parse_signal_message")
+    assert hasattr(webrtc_signal, "make_sd_video_list_command_payload")
+    assert hasattr(webrtc_signal, "make_start_sd_playback_command_payload")
+    assert hasattr(webrtc_signal, "make_stop_sd_playback_command_payload")
