@@ -5,8 +5,7 @@ Python-xsense is an async client library for X-Sense cloud accounts, AWS IoT
 shadows, MQTT updates, ADDX/VicoHome camera APIs, recording metadata and local
 SD playback controls, WebRTC signaling, and supported device actions/settings.
 
-Supported Python versions are 3.10 through 3.14, including the supported Home
-Assistant runtime range.
+Supported Python versions are 3.10 through 3.14.
 
 This package contains reusable Python client logic only. Home Assistant
 entity descriptions, icons, translations, blueprints, platform setup, and
@@ -51,7 +50,7 @@ Pure parsing helpers live in separate modules:
   signal-server SDP and ICE payloads.
 
 Client surface
------------------
+--------------
 
 The library provides the reusable X-Sense client and protocol surface used by
 the Home Assistant integration:
